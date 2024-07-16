@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      #calendar{
+        width: 500px;
+        height: 500px;
+      }
+    </style>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar/index.global.min.js'></script>
+    <script>
+
+      // 화면 준비되면 동작
+      document.addEventListener('DOMContentLoaded', function() {
+
+        // 달력 셋팅
+        const calendarEl = document.getElementById('calendar')
+        const calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth',
+          eventClick: function(info){
+            console.log(info);
+          },
+        })
+        calendar.render()
+
+        // 내가 원하는 작업
+        const changeViewBtn = document.querySelector("#changeViewBtn");
+        changeViewBtn.onclick = function(){
+          calendar.changeView('timeGridDay');
+        }; 
+
+        // 내가 원하는 작업2
+        calendar.addEvent( {
+          title: "잠 자기",
+          start: "2024-07-05",
+          end: "2024-07-24",
+        } );
+
+      })
+
+
+    </script>
+  </head>
+  <body>
+
+    <button id="changeViewBtn">뷰 바꾸기</button>
+
+    <div id='calendar'></div>
+  </body>
+</html>
